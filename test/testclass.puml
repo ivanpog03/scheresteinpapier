@@ -1,0 +1,49 @@
+@startuml
+set namespaceSeparator ::
+
+class "rock_paper_scisor_game::main.dart::MyApp" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "rock_paper_scisor_game::main.dart::MyApp"
+
+class "rock_paper_scisor_game::screens::main_screen.dart::MainScreen" {
+  +_MainScreenState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "rock_paper_scisor_game::screens::main_screen.dart::MainScreen"
+
+class "rock_paper_scisor_game::screens::main_screen.dart::_MainScreenState" {
+  +void initState()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "rock_paper_scisor_game::screens::main_screen.dart::_MainScreenState"
+
+class "rock_paper_scisor_game::screens::results_screen.dart::GameScreen" {
+  +GameChoice gameChoice
+  +_GameScreenState createState()
+}
+
+"rock_paper_scisor_game::screens::results_screen.dart::GameScreen" o-- "rock_paper_scisor_game::utilis::game.dart::GameChoice"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "rock_paper_scisor_game::screens::results_screen.dart::GameScreen"
+
+class "rock_paper_scisor_game::screens::results_screen.dart::_GameScreenState" {
+  +String? randomChoice()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "rock_paper_scisor_game::screens::results_screen.dart::_GameScreenState"
+
+class "rock_paper_scisor_game::utilis::game.dart::Game" {
+  {static} +int gameScore
+  {static} +List<String> choices
+}
+
+class "rock_paper_scisor_game::utilis::game.dart::GameChoice" {
+  +String? type
+  {static} +Map<String, Map<String, String>> gameRules
+}
+
+
+@enduml
